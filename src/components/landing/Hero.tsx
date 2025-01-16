@@ -12,7 +12,6 @@ const ParticleField = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Set canvas size
     const setSize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -20,7 +19,6 @@ const ParticleField = () => {
     setSize();
     window.addEventListener('resize', setSize);
 
-    // Particle class
     class Particle {
       x: number;
       y: number;
@@ -64,23 +62,16 @@ const ParticleField = () => {
       }
     }
 
-    // Create particles
-    const particles: Particle[] = [];
-    for (let i = 0; i < 50; i++) {
-      particles.push(new Particle(
-        Math.random() * window.innerWidth,
-        Math.random() * window.innerHeight
-      ));
-    }
+    const particles: Particle[] = Array.from({ length: 50 }, () => 
+      new Particle(Math.random() * window.innerWidth, Math.random() * window.innerHeight)
+    );
 
-    // Animation loop
     let animationId: number;
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       particles.forEach(particle => particle.update());
       
-      // Draw connections
       particles.forEach((p1, i) => {
         particles.slice(i + 1).forEach(p2 => {
           const distance = Math.hypot(p1.x - p2.x, p1.y - p2.y);
@@ -99,21 +90,16 @@ const ParticleField = () => {
     };
     animate();
 
-    // Clean up
     return () => {
       window.removeEventListener('resize', setSize);
       cancelAnimationFrame(animationId);
     };
   }, [mousePosition]);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    setMousePosition({ x: e.clientX, y: e.clientY });
-  };
-
   return (
     <canvas
       ref={canvasRef}
-      onMouseMove={handleMouseMove}
+      onMouseMove={(e) => setMousePosition({ x: e.clientX, y: e.clientY })}
       className="absolute inset-0 pointer-events-none"
     />
   );
@@ -122,15 +108,69 @@ const ParticleField = () => {
 const AnimatedSphere = () => {
   return (
     <div className="relative w-96 h-96 max-w-full">
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur-3xl opacity-20 animate-pulse" />
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full blur-2xl opacity-20 animate-ping" />
-      <div className="absolute inset-4 bg-black rounded-full">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full opacity-80" 
-             style={{
-               clipPath: 'polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%)',
-               animation: 'rotate 8s linear infinite'
-             }}
-        />
+      <div className="absolute inset-0 rounded-full overflow-hidden">
+        {/* Rotating lights */}
+        <div className="absolute inset-0 z-10">
+          {/* Yin (B&W) side light */}
+          <div 
+            className="absolute inset-0 bg-white/30 blur-2xl"
+            style={{
+              clipPath: 'polygon(0 0, 50% 0, 50% 100%, 0 100%)',
+              animation: 'yinRotate 8s linear infinite'
+            }}
+          />
+          {/* Yang (Color) side light */}
+          <div 
+            className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 blur-2xl opacity-30"
+            style={{
+              clipPath: 'polygon(50% 0, 100% 0, 100% 100%, 50% 100%)',
+              animation: 'yangRotate 8s linear infinite'
+            }}
+          />
+        </div>
+
+        {/* Main yin-yang container */}
+        <div 
+          className="absolute inset-0 z-20"
+          style={{ animation: 'mainRotate 8s linear infinite' }}
+        >
+          {/* Base image */}
+          <img 
+            src="/sideguy.png" 
+            alt="Sphere" 
+            className="w-full h-full object-cover"
+          />
+
+          {/* Yin (B&W) overlay */}
+          <div 
+            className="absolute inset-0"
+            style={{
+              background: 'linear-gradient(90deg, rgba(0,0,0,0.9), rgba(255,255,255,0.1))',
+              mixBlendMode: 'saturation',
+              clipPath: 'polygon(0 0, 50% 0, 50% 100%, 0 100%)'
+            }}
+          />
+
+          {/* Yin-yang curve */}
+          <div 
+            className="absolute inset-0"
+            style={{
+              background: `
+                radial-gradient(circle at 50% 25%, #fff 0%, #fff 25%, transparent 26%),
+                radial-gradient(circle at 50% 75%, #000 0%, #000 25%, transparent 26%)
+              `,
+              mask: 'linear-gradient(90deg, #000 49.5%, transparent 50.5%)'
+            }}
+          />
+
+          {/* Dots */}
+          <div className="absolute left-1/2 top-1/4 w-8 h-8 -translate-x-1/2 -translate-y-1/2 bg-black rounded-full">
+            <div className="absolute inset-1 rounded-full bg-white" />
+          </div>
+          <div className="absolute left-1/2 top-3/4 w-8 h-8 -translate-x-1/2 -translate-y-1/2 bg-white rounded-full">
+            <div className="absolute inset-1 rounded-full bg-black" />
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -140,16 +180,14 @@ const Hero = () => {
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
+    const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-black">
-      {/* Gradient Mesh Background */}
+      {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10" />
       <div className="absolute inset-0 backdrop-blur-3xl">
         <ParticleField />
@@ -160,21 +198,18 @@ const Hero = () => {
         <div className={`space-y-6 text-center transform transition-all duration-700 ${
           scrollY > 100 ? 'translate-y-10 opacity-0' : 'translate-y-0 opacity-100'
         }`}>
-          {/* Headline */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold">
             <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-              Next Generation
+              The Next Generation
             </span>
             <br />
-            <span className="text-white">AI Assistant</span>
+            <span className="text-white">Toly AI</span>
           </h1>
 
-          {/* Subheading */}
           <p className="text-gray-400 text-xl md:text-2xl max-w-2xl mx-auto">
-            Experience the future of AI with our advanced assistant that helps you accomplish more
+            Toly is here to help with insights on transactions, tokens, wallets and all activities on the Solana Blockchain
           </p>
 
-          {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
             <button className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg text-white font-medium transform hover:scale-105 transition-all duration-200 hover:shadow-lg hover:shadow-blue-500/30">
               Get Started
@@ -185,7 +220,6 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Animated Sphere */}
         <div className={`mt-12 transform transition-all duration-700 ${
           scrollY > 100 ? 'translate-y-10 opacity-0' : 'translate-y-0 opacity-100'
         }`}>
@@ -204,22 +238,23 @@ const Hero = () => {
   );
 };
 
-// Add rotation keyframes
-const styles = `
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-`;
-
-// Add style tag
+// Animation keyframes
 if (typeof document !== 'undefined') {
   const styleSheet = document.createElement('style');
-  styleSheet.textContent = styles;
+  styleSheet.textContent = `
+    @keyframes mainRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes yinRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(-360deg); }
+    }
+    @keyframes yangRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+  `;
   document.head.appendChild(styleSheet);
 }
 
