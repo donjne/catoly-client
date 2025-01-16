@@ -809,6 +809,7 @@
   
 //   export default AnimatedSphere;
 
+"use client"
 const AnimatedSphere = () => {
     return (
       <div className="relative w-64 h-64 max-w-full">
@@ -893,7 +894,7 @@ const AnimatedSphere = () => {
                 {[...Array(8)].map((_, i) => (
                   <div
                     key={i}
-                    className={`particle-${i} absolute w-1 h-1 bg-blue-400 rounded-full opacity-0`}
+                    className={`particle-${i} absolute w-1 h-1 bg-gradient-to-r from-gray-200 to-green-200 rounded-full opacity-0`}
                   />
                 ))}
               </div>

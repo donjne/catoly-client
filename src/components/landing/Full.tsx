@@ -1,4 +1,5 @@
 "use client"
+import Features from "./Features";
 import Hero from "./Hero";
 import Navbar from "./Navbar";
 
@@ -13,6 +14,7 @@ export default function Full() {
       {/* Main content */}
       <div className="relative z-0">
         <Hero />
+        <Features />
       </div>
     </div>
   );
