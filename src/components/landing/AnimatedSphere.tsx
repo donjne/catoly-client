@@ -457,6 +457,136 @@
   
 //   export default AnimatedSphere;
 
+// const AnimatedSphere = () => {
+//     return (
+//       <div className="relative w-64 h-64 max-w-full">
+//         {/* Particle effects */}
+//         <div className="particles absolute inset-0">
+//           {[...Array(6)].map((_, i) => (
+//             <div
+//               key={i}
+//               className={`particle-${i} absolute w-2 h-2 bg-yellow-400 rounded-full opacity-0`}
+//             />
+//           ))}
+//         </div>
+  
+//         <div className="absolute inset-0 rounded-full overflow-hidden">
+//           <div 
+//             className="sphere relative w-full h-full" 
+//           >
+//             {/* Left side (B&W) */}
+//             <div 
+//               className="absolute inset-0"
+//               style={{
+//                 clipPath: 'polygon(0 0, 50% 0, 50% 100%, 0 100%)'
+//               }}
+//             >
+//               <img 
+//                 src="/sideguy.png" 
+//                 alt="Left half" 
+//                 className="w-full h-full object-cover grayscale"
+//               />
+//               {/* White dot */}
+//               <div className="absolute top-[65%] left-[35%] w-8 h-8 rounded-full bg-white" />
+//             </div>
+  
+//             {/* Right side (Color) */}
+//             <div 
+//               className="absolute inset-0"
+//               style={{
+//                 clipPath: 'polygon(50% 0, 100% 0, 100% 100%, 50% 100%)'
+//               }}
+//             >
+//               <img 
+//                 src="/sideguy.png" 
+//                 alt="Right half" 
+//                 className="w-full h-full object-cover"
+//               />
+//               {/* Black dot */}
+//               <div className="absolute top-[35%] left-[65%] w-8 h-8 rounded-full bg-black" />
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     );
+//   };
+  
+//   // Add animations
+//   if (typeof document !== 'undefined') {
+//     const styleSheet = document.createElement('style');
+//     styleSheet.textContent = `
+//       .sphere {
+//         animation: rotateAndSpeed 8s ease-in-out infinite;
+//         transform-origin: center;
+//       }
+  
+//       @keyframes rotateAndSpeed {
+//         0% { transform: rotate(0deg); }
+//         50% { transform: rotate(180deg); }
+//         75% { transform: rotate(540deg); }
+//         100% { transform: rotate(720deg); }
+//       }
+  
+//       /* Particle animations */
+//       .particles div {
+//         animation: particleShoot 2s ease-out infinite;
+//       }
+  
+//       ${[...Array(6)].map((_, i) => `
+//         .particle-${i} {
+//           left: 50%;
+//           top: 50%;
+//           animation-delay: ${i * 0.3}s !important;
+//           transform-origin: center;
+//         }
+//       `).join('')}
+  
+//       @keyframes particleShoot {
+//         0% {
+//           transform: translate(0, 0) scale(0);
+//           opacity: 0;
+//         }
+//         10% {
+//           opacity: 1;
+//         }
+//         90% {
+//           opacity: 1;
+//         }
+//         100% {
+//           opacity: 0;
+//           transform: translate(
+//             ${(Math.random() * 200) - 100}px,
+//             ${(Math.random() * 200) - 100}px
+//           ) scale(1);
+//         }
+//       }
+  
+//       /* Add a pulse effect */
+//       .sphere::before {
+//         content: '';
+//         position: absolute;
+//         inset: -4px;
+//         border: 4px solid rgba(255, 255, 255, 0.5);
+//         border-radius: 50%;
+//         animation: pulse 2s ease-out infinite;
+//       }
+  
+//       @keyframes pulse {
+//         0% {
+//           transform: scale(1);
+//           opacity: 0.5;
+//         }
+//         100% {
+//           transform: scale(1.5);
+//           opacity: 0;
+//         }
+//       }
+//     `;
+//     document.head.appendChild(styleSheet);
+//   }
+  
+//   export default AnimatedSphere;
+
 const AnimatedSphere = () => {
     return (
       <div className="relative w-64 h-64 max-w-full">
@@ -478,7 +608,7 @@ const AnimatedSphere = () => {
             <div 
               className="absolute inset-0"
               style={{
-                clipPath: 'polygon(0 0, 50% 0, 50% 100%, 0 100%)'
+                clipPath: 'path("M128 32 A50 50 0 1 1 128 128 A50 50 0 1 0 128 224")'
               }}
             >
               <img 
@@ -486,15 +616,13 @@ const AnimatedSphere = () => {
                 alt="Left half" 
                 className="w-full h-full object-cover grayscale"
               />
-              {/* White dot */}
-              <div className="absolute top-[65%] left-[35%] w-8 h-8 rounded-full bg-white" />
             </div>
   
             {/* Right side (Color) */}
             <div 
               className="absolute inset-0"
               style={{
-                clipPath: 'polygon(50% 0, 100% 0, 100% 100%, 50% 100%)'
+                clipPath: 'path("M128 32 A50 50 0 0 0 128 128 A50 50 0 0 1 128 224")'
               }}
             >
               <img 
@@ -502,8 +630,6 @@ const AnimatedSphere = () => {
                 alt="Right half" 
                 className="w-full h-full object-cover"
               />
-              {/* Black dot */}
-              <div className="absolute top-[35%] left-[65%] w-8 h-8 rounded-full bg-black" />
             </div>
           </div>
         </div>
