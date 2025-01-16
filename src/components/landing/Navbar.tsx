@@ -74,7 +74,7 @@ const Navbar = () => {
           {label}
         </span>
         <span className={`absolute -bottom-1 left-0 w-full h-0.5 transform origin-left transition-all duration-300 ease-out ${
-          isActive || isHovered ? 'scale-x-100 bg-blue-500' : 'scale-x-0 bg-white'
+          isActive || isHovered ? 'scale-x-100 bg-green-500' : 'scale-x-0 bg-white'
         }`} />
       </a>
     );
@@ -94,7 +94,7 @@ const Navbar = () => {
                 alt="Toly AI Logo" 
                 className="w-8 h-8 object-contain rounded-full"
               />
-              <span className="text-white text-xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+              <span className="text-white text-xl font-bold bg-gradient-to-r from-gray-500 to-green-600 bg-clip-text text-transparent">
                 Toly AI
               </span>
             </div>
@@ -106,9 +106,9 @@ const Navbar = () => {
               {navLinks.map((link) => (
                 <NavLink key={link.label} {...link} />
               ))}
-              <button className="relative overflow-hidden group bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/30">
+              <button className="relative overflow-hidden group bg-gradient-to-r from-gray-500 to-green-600 text-white px-6 py-2 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-green-500/30">
                 <span className="relative z-10">Get Started</span>
-                <div className="absolute inset-0 h-full w-full transform scale-0 group-hover:scale-100 transition-transform duration-300 ease-out bg-gradient-to-r from-purple-600 to-blue-500" />
+                <div className="absolute inset-0 h-full w-full transform scale-0 group-hover:scale-100 transition-transform duration-300 ease-out bg-gradient-to-r from-gray-600 to-green-500" />
               </button>
             </div>
           </div>
@@ -155,7 +155,7 @@ const Navbar = () => {
               </a>
             ))}
             <button 
-              className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/30 hover:scale-105"
+              className="w-full bg-gradient-to-r from-gray-500 to-green-600 text-white px-6 py-2 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-green-500/30 hover:scale-105"
               onClick={() => setIsOpen(false)}
             >
               Get Started

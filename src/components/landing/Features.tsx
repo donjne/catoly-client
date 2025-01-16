@@ -220,10 +220,10 @@ const Features = () => {
         {/* Animated section header */}
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 relative inline-block">
-            <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-gray-400 via-green-500 to-gray-500 bg-clip-text text-transparent">
               Powerful Features
             </span>
-            <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500" />
+            <div className="absolute -inset-1 bg-gradient-to-r from-gray-500 via-green-500 to-gray-500 blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500" />
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto mt-6">
             Experience the next generation of AI assistance with our powerful suite of features
@@ -248,7 +248,7 @@ const Features = () => {
 
         {/* Enhanced call-to-action */}
         <div className="mt-20 text-center">
-          <button className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg text-white font-medium transform hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/30">
+          <button className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-gray-500 to-green-600 rounded-lg text-white font-medium transform hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-green-500/30">
             <span className="relative">
               Explore All Features
               <span className="absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />

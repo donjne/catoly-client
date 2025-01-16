@@ -260,7 +260,7 @@ const Hero = () => {
           scrollY > 100 ? 'translate-y-10 opacity-0' : 'translate-y-0 opacity-100'
         }`}>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold">
-            <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-gray-400 via-green-500 to-gray-500 bg-clip-text text-transparent">
               The Next Generation
             </span>
             <br />
@@ -272,7 +272,7 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-            <button className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg text-white font-medium transform hover:scale-105 transition-all duration-200 hover:shadow-lg hover:shadow-blue-500/30">
+            <button className="px-8 py-4 bg-gradient-to-r from-gray-500 to-green-600 rounded-lg text-white font-medium transform hover:scale-105 transition-all duration-200 hover:shadow-lg hover:shadow-green-500/30">
               Get Started
             </button>
             <button className="px-8 py-4 bg-white/10 backdrop-blur-lg rounded-lg text-white font-medium transform hover:scale-105 transition-all duration-200 hover:shadow-lg hover:shadow-white/20 border border-white/20">
@@ -292,7 +292,7 @@ const Hero = () => {
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-white/50">
         <span className="text-sm">Scroll to explore</span>
         <div className="w-1 h-12 mt-2 bg-white/20 rounded-full">
-          <div className="w-full h-1/2 bg-gradient-to-b from-blue-500 to-purple-600 rounded-full animate-bounce" />
+          <div className="w-full h-1/2 bg-gradient-to-b from-gray-500 to-green-600 rounded-full animate-bounce" />
         </div>
       </div>
     </div>

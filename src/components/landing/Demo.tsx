@@ -213,7 +213,7 @@ const DemoSection = () => {
         {/* Demo interface */}
         <div className="max-w-5xl mx-auto transform hover:scale-[1.02] transition-transform duration-500">
           <div className="bg-[#1A1A1A] rounded-xl overflow-hidden border border-white/10 shadow-2xl">
-            {/* Demo header */}
+            {/* Demo header with window controls */}
             <div className="flex items-center p-4 border-b border-white/10 bg-black/50">
               <div className="flex space-x-2">
                 <div className="w-3 h-3 rounded-full bg-red-500" />
@@ -227,21 +227,22 @@ const DemoSection = () => {
 
             {/* Main content area */}
             <div className="flex min-h-[600px]">
-              {/* Mobile menu button */}
-              <button
-                onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                className="lg:hidden absolute top-20 left-4 z-50 text-white/70 hover:text-white p-2"
-              >
-                {isSidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-              </button>
-
               {/* Sidebar */}
-              <div className={`fixed lg:static inset-y-0 left-0 transform ${
-                isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-              } lg:translate-x-0 transition-transform duration-300 ease-in-out
-                lg:w-64 bg-black/50 backdrop-blur-xl border-r border-white/10 z-40`}>
-                <div className="p-4 space-y-4">
-                  <div className="text-white/50 text-sm font-medium">Navigation</div>
+              <div 
+                className={`fixed lg:static inset-y-0 left-0 w-64 bg-black/50 backdrop-blur-xl border-r border-white/10 transform ${
+                  isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+                } lg:translate-x-0 transition-transform duration-300 ease-in-out z-40`}
+              >
+                <div className="p-4">
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="text-white/50 text-sm font-medium">Navigation</span>
+                    <button
+                      onClick={() => setIsSidebarOpen(false)}
+                      className="lg:hidden text-white/70 hover:text-white p-1.5 rounded-lg hover:bg-white/10"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                  </div>
                   <div className="space-y-2">
                     {navItems.map((item) => (
                       <button
@@ -258,65 +259,76 @@ const DemoSection = () => {
                 </div>
               </div>
 
-              {/* Main chat area */}
-              <div className="flex-1 p-6 space-y-6">
+              {/* Main content */}
+              <div className="flex-1">
                 {/* Chat header */}
-                <div className="text-3xl font-semibold text-white mb-8">
-                  {text}
-                  {isTyping && <span className="animate-pulse">|</span>}
-                </div>
-
-                {/* Input area */}
-                <div className="relative group">
-                  <input
-                    type="text"
-                    placeholder="Start a new conversation..."
-                    className="w-full bg-black/50 rounded-lg px-4 py-3 text-white placeholder-gray-500 border border-white/10 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all duration-200"
-                  />
-                  <button className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition-all duration-200 transform group-hover:scale-110">
-                    <Send className="w-5 h-5" />
+                <div className="flex items-center border-b border-white/10 p-6">
+                  <button
+                    onClick={() => setIsSidebarOpen(true)}
+                    className="lg:hidden text-white/70 hover:text-white p-1.5 rounded-lg hover:bg-white/10 mr-4"
+                  >
+                    <Menu className="w-6 h-6" />
                   </button>
-                </div>
-
-                {/* Suggestions */}
-                <div className="space-y-4">
-                  <h3 className="text-white/50 text-sm font-medium">Suggestions</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {suggestions.map((suggestion, index) => (
-                      <button
-                        key={index}
-                        className="p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-200 text-left group transform hover:scale-105"
-                      >
-                        <div className="text-white font-medium mb-1 group-hover:text-blue-400">
-                          {suggestion.title}
-                        </div>
-                        <div className="text-gray-400 text-sm">{suggestion.description}</div>
-                      </button>
-                    ))}
+                  <div className="text-3xl font-semibold text-white">
+                    {text}
+                    {isTyping && <span className="animate-pulse">|</span>}
                   </div>
                 </div>
 
-                {/* Integrations */}
-                <div className="space-y-4">
-                  <h3 className="text-white/50 text-sm font-medium">Integrations</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {integrations.map((integration, index) => (
-                      <div
-                        key={index}
-                        className="group flex items-center p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-200 cursor-pointer transform hover:scale-105"
-                      >
-                        <div className={`w-10 h-10 rounded-lg bg-gradient-to-r ${integration.color} flex items-center justify-center text-xl mr-4 transform group-hover:rotate-12 transition-transform duration-200`}>
-                          {integration.icon}
-                        </div>
-                        <div className="flex-1">
-                          <div className="text-white font-medium group-hover:text-blue-400 transition-colors duration-200">
-                            {integration.name}
+                {/* Chat content */}
+                <div className="p-6 space-y-6">
+                  {/* Input area */}
+                  <div className="relative group">
+                    <input
+                      type="text"
+                      placeholder="Start a new conversation..."
+                      className="w-full bg-black/50 rounded-lg px-4 py-3 text-white placeholder-gray-500 border border-white/10 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all duration-200"
+                    />
+                    <button className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition-all duration-200 transform group-hover:scale-110">
+                      <Send className="w-5 h-5" />
+                    </button>
+                  </div>
+
+                  {/* Suggestions */}
+                  <div className="space-y-4">
+                    <h3 className="text-white/50 text-sm font-medium">Suggestions</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {suggestions.map((suggestion, index) => (
+                        <button
+                          key={index}
+                          className="p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-200 text-left group transform hover:scale-105"
+                        >
+                          <div className="text-white font-medium mb-1 group-hover:text-blue-400">
+                            {suggestion.title}
                           </div>
-                          <div className="text-gray-400 text-sm">{integration.description}</div>
+                          <div className="text-gray-400 text-sm">{suggestion.description}</div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Integrations */}
+                  <div className="space-y-4">
+                    <h3 className="text-white/50 text-sm font-medium">Integrations</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {integrations.map((integration, index) => (
+                        <div
+                          key={index}
+                          className="group flex items-center p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-200 cursor-pointer transform hover:scale-105"
+                        >
+                          <div className={`w-10 h-10 rounded-lg bg-gradient-to-r ${integration.color} flex items-center justify-center text-xl mr-4 transform group-hover:rotate-12 transition-transform duration-200`}>
+                            {integration.icon}
+                          </div>
+                          <div className="flex-1">
+                            <div className="text-white font-medium group-hover:text-blue-400 transition-colors duration-200">
+                              {integration.name}
+                            </div>
+                            <div className="text-gray-400 text-sm">{integration.description}</div>
+                          </div>
+                          <ExternalLink className="w-5 h-5 text-gray-400 group-hover:text-white transition-all duration-200 transform group-hover:rotate-45" />
                         </div>
-                        <ExternalLink className="w-5 h-5 text-gray-400 group-hover:text-white transition-all duration-200 transform group-hover:rotate-45" />
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
