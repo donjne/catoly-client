@@ -112,7 +112,7 @@ const AnimatedSphere = () => {
         <div className="absolute inset-0 rounded-full overflow-hidden">
           {/* Static base image */}
           <img 
-            src="/sphere-image.jpg" 
+            src="/sidecat.png" 
             alt="Sphere" 
             className="w-full h-full object-cover"
           />
