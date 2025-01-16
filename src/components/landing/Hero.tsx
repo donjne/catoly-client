@@ -255,7 +255,7 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 pt-16 h-screen flex flex-col items-center justify-center">
+      <div className="relative z-10 container mx-auto px-4 pt-32 h-screen flex flex-col items-center justify-center">
         <div className={`space-y-6 text-center transform transition-all duration-700 ${
           scrollY > 100 ? 'translate-y-10 opacity-0' : 'translate-y-0 opacity-100'
         }`}>
