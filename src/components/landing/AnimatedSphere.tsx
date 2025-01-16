@@ -62,6 +62,118 @@
   
 //   export default AnimatedSphere;
 
+// const AnimatedSphere = () => {
+//     return (
+//       <div className="relative w-96 h-96 max-w-full">
+//         <div className="absolute inset-0 rounded-full overflow-hidden">
+//           {/* Color switching layers */}
+//           <div 
+//             className="relative w-full h-full" 
+//             style={{ animation: 'rotateYinYang 4s linear infinite' }}
+//           >
+//             {/* First state (0-180 degrees) */}
+//             <div className="absolute inset-0">
+//               {/* Left side (Yin - B&W) */}
+//               <div 
+//                 className="absolute inset-0"
+//                 style={{
+//                   clipPath: 'path("M200 0 A200 200 0 0 0 200 400 Q 300 300, 350 200 Q 300 100, 200 0")'
+//                 }}
+//               >
+//                 <img 
+//                   src="/sideguy.png" 
+//                   alt="Left half" 
+//                   className="w-full h-full object-cover grayscale"
+//                 />
+//                 {/* Yin dot (transparent) */}
+//                 <div className="absolute top-[60%] left-[35%] w-16 h-16 rounded-full bg-transparent border-2 border-white" />
+//               </div>
+  
+//               {/* Right side (Yang - Color) */}
+//               <div 
+//                 className="absolute inset-0"
+//                 style={{
+//                   clipPath: 'path("M200 0 A200 200 0 0 1 200 400 Q 100 300, 50 200 Q 100 100, 200 0")'
+//                 }}
+//               >
+//                 <img 
+//                   src="/sideguy.png" 
+//                   alt="Right half" 
+//                   className="w-full h-full object-cover"
+//                 />
+//                 {/* Yang dot (black) */}
+//                 <div className="absolute top-[40%] left-[65%] w-16 h-16 rounded-full bg-black" />
+//               </div>
+//             </div>
+  
+//             {/* Second state (180-360 degrees) - colors reversed */}
+//             <div 
+//               className="absolute inset-0"
+//               style={{
+//                 opacity: 0,
+//                 animation: 'colorSwitch 4s linear infinite'
+//               }}
+//             >
+//               {/* Left side (Yang - Color) */}
+//               <div 
+//                 className="absolute inset-0"
+//                 style={{
+//                   clipPath: 'path("M200 0 A200 200 0 0 0 200 400 Q 300 300, 350 200 Q 300 100, 200 0")'
+//                 }}
+//               >
+//                 <img 
+//                   src="/sideguy.png" 
+//                   alt="Left half" 
+//                   className="w-full h-full object-cover"
+//                 />
+//                 {/* Yang dot (black) */}
+//                 <div className="absolute top-[60%] left-[35%] w-16 h-16 rounded-full bg-black" />
+//               </div>
+  
+//               {/* Right side (Yin - B&W) */}
+//               <div 
+//                 className="absolute inset-0"
+//                 style={{
+//                   clipPath: 'path("M200 0 A200 200 0 0 1 200 400 Q 100 300, 50 200 Q 100 100, 200 0")'
+//                 }}
+//               >
+//                 <img 
+//                   src="/sideguy.png" 
+//                   alt="Right half" 
+//                   className="w-full h-full object-cover grayscale"
+//                 />
+//                 {/* Yin dot (transparent) */}
+//                 <div className="absolute top-[40%] left-[65%] w-16 h-16 rounded-full bg-transparent border-2 border-white" />
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     );
+//   };
+  
+//   // Add the rotation and color switching keyframes
+//   if (typeof document !== 'undefined') {
+//     const styleSheet = document.createElement('style');
+//     styleSheet.textContent = `
+//       @keyframes rotateYinYang {
+//         from { transform: rotate(0deg); }
+//         to { transform: rotate(360deg); }
+//       }
+  
+//       @keyframes colorSwitch {
+//         0% { opacity: 0; }
+//         49.99% { opacity: 0; }
+//         50% { opacity: 1; }
+//         99.99% { opacity: 1; }
+//         100% { opacity: 0; }
+//       }
+//     `;
+//     document.head.appendChild(styleSheet);
+//   }
+  
+//   export default AnimatedSphere;
+
 const AnimatedSphere = () => {
     return (
       <div className="relative w-96 h-96 max-w-full">
@@ -77,7 +189,7 @@ const AnimatedSphere = () => {
               <div 
                 className="absolute inset-0"
                 style={{
-                  clipPath: 'path("M200 0 A200 200 0 0 0 200 400 Q 300 300, 350 200 Q 300 100, 200 0")'
+                  clipPath: 'path("M200 0 A200 200 0 0 0 200 400 Q 300 200, 200 0")'
                 }}
               >
                 <img 
@@ -85,15 +197,15 @@ const AnimatedSphere = () => {
                   alt="Left half" 
                   className="w-full h-full object-cover grayscale"
                 />
-                {/* Yin dot (transparent) */}
-                <div className="absolute top-[60%] left-[35%] w-16 h-16 rounded-full bg-transparent border-2 border-white" />
+                {/* Yin dot (white) */}
+                <div className="absolute top-[65%] left-[35%] w-16 h-16 rounded-full bg-white" />
               </div>
   
               {/* Right side (Yang - Color) */}
               <div 
                 className="absolute inset-0"
                 style={{
-                  clipPath: 'path("M200 0 A200 200 0 0 1 200 400 Q 100 300, 50 200 Q 100 100, 200 0")'
+                  clipPath: 'path("M200 0 A200 200 0 0 1 200 400 Q 100 200, 200 0")'
                 }}
               >
                 <img 
@@ -102,7 +214,7 @@ const AnimatedSphere = () => {
                   className="w-full h-full object-cover"
                 />
                 {/* Yang dot (black) */}
-                <div className="absolute top-[40%] left-[65%] w-16 h-16 rounded-full bg-black" />
+                <div className="absolute top-[35%] left-[65%] w-16 h-16 rounded-full bg-black" />
               </div>
             </div>
   
@@ -118,7 +230,7 @@ const AnimatedSphere = () => {
               <div 
                 className="absolute inset-0"
                 style={{
-                  clipPath: 'path("M200 0 A200 200 0 0 0 200 400 Q 300 300, 350 200 Q 300 100, 200 0")'
+                  clipPath: 'path("M200 0 A200 200 0 0 0 200 400 Q 300 200, 200 0")'
                 }}
               >
                 <img 
@@ -127,14 +239,14 @@ const AnimatedSphere = () => {
                   className="w-full h-full object-cover"
                 />
                 {/* Yang dot (black) */}
-                <div className="absolute top-[60%] left-[35%] w-16 h-16 rounded-full bg-black" />
+                <div className="absolute top-[65%] left-[35%] w-16 h-16 rounded-full bg-black" />
               </div>
   
               {/* Right side (Yin - B&W) */}
               <div 
                 className="absolute inset-0"
                 style={{
-                  clipPath: 'path("M200 0 A200 200 0 0 1 200 400 Q 100 300, 50 200 Q 100 100, 200 0")'
+                  clipPath: 'path("M200 0 A200 200 0 0 1 200 400 Q 100 200, 200 0")'
                 }}
               >
                 <img 
@@ -142,8 +254,8 @@ const AnimatedSphere = () => {
                   alt="Right half" 
                   className="w-full h-full object-cover grayscale"
                 />
-                {/* Yin dot (transparent) */}
-                <div className="absolute top-[40%] left-[65%] w-16 h-16 rounded-full bg-transparent border-2 border-white" />
+                {/* Yin dot (white) */}
+                <div className="absolute top-[35%] left-[65%] w-16 h-16 rounded-full bg-white" />
               </div>
             </div>
           </div>
