@@ -342,7 +342,7 @@ const AnimatedSphere = () => {
               <div 
                 className="absolute inset-0"
                 style={{
-                  clipPath: 'path("M200 0 A200 200 0 0 0 200 400 C 350 300, 350 100, 200 0")'
+                  clipPath: 'path("M200 0 A200 200 0 0 0 200 400 C 250 300, 350 100, 200 0")'
                 }}
               >
                 <img 
@@ -358,7 +358,7 @@ const AnimatedSphere = () => {
               <div 
                 className="absolute inset-0"
                 style={{
-                  clipPath: 'path("M200 0 A200 200 0 0 1 200 400 C 50 300, 50 100, 200 0")'
+                  clipPath: 'path("M200 0 A200 200 0 0 1 200 400 C 150 300, 50 100, 200 0")'
                 }}
               >
                 <img 
