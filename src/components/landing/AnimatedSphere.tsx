@@ -307,7 +307,7 @@ const AnimatedSphere = () => {
                 <img 
                   src="/sideguy.png" 
                   alt="Left half" 
-                  className="w-full h-full object-cover grayscale"
+                  className="w-1/2 h-1/2 object-cover grayscale"
                 />
                 {/* Yin dot (white) */}
                 <div className="absolute top-[65%] left-[35%] w-16 h-16 rounded-full bg-white" />
@@ -323,7 +323,7 @@ const AnimatedSphere = () => {
                 <img 
                   src="/sideguy.png" 
                   alt="Right half" 
-                  className="w-full h-full object-cover"
+                  className="w-1/2 h-1/2 object-cover"
                 />
                 {/* Yang dot (black) */}
                 <div className="absolute top-[35%] left-[65%] w-16 h-16 rounded-full bg-black" />
