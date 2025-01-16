@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
 
 interface NavLink {
   label: string;
@@ -7,11 +6,11 @@ interface NavLink {
 }
 
 const navLinks: NavLink[] = [
-  { label: 'About Us', href: '#about' },
-  { label: 'Docs', href: '#docs' },
-  { label: 'Changelog', href: '#changelog' },
-  { label: 'Contact', href: '#contact' },
-];
+    { label: 'About Us', href: '/about' },
+    { label: 'Docs', href: 'https://toly.gitbook.io' },
+    { label: 'Changelog', href: '/changelog' },
+    { label: 'Contact', href: '/contact' },
+  ];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
