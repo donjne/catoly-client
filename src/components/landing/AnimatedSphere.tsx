@@ -5,7 +5,7 @@ const AnimatedSphere = () => {
         <div className="absolute inset-0 rounded-full overflow-hidden">
           {/* Original colored image (base layer) */}
           <img 
-            src="/sphere-image.jpg" 
+            src="/sideguy.png" 
             alt="Sphere" 
             className="w-full h-full object-cover"
           />
@@ -13,7 +13,7 @@ const AnimatedSphere = () => {
           {/* Black and white version of the same image */}
           <div className="absolute inset-0" style={{ mixBlendMode: 'saturation' }}>
             <img 
-              src="/sphere-image.jpg" 
+              src="/sideguy.png" 
               alt="Sphere" 
               className="w-full h-full object-cover grayscale"
             />
