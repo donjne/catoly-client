@@ -88,7 +88,7 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex-shrink-0 transform hover:scale-105 transition-transform duration-200">
             <span className="text-white text-xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-              YourLogo
+              Toly AI
             </span>
           </div>
 

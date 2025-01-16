@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Toly AI",
-  description: "Your AI Companion Exploring the Solana Blockchain",
+  title: "Toly AI | Your AI Companion Exploring the Solana Blockchain",
+  description: "Toly is here to help with insights on transactions, tokens, wallets and all activities on the Solana Blockchain",
 };
 
 export default function RootLayout({
