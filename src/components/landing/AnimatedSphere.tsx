@@ -301,13 +301,13 @@ const AnimatedSphere = () => {
               <div 
                 className="absolute inset-0"
                 style={{
-                  clipPath: 'path("M200 0 A200 200 0 0 0 200 400 C 350 300, 350 100, 200 0")'
+                  clipPath: 'path("M200 0 A200 200 0 0 0 200 400 C 250 350, 150 250, 200 200 C 250 150, 150 50, 200 0")'
                 }}
               >
                 <img 
                   src="/sideguy.png" 
                   alt="Left half" 
-                  className="w-1/2 h-1/2 object-cover grayscale"
+                  className="w-full h-full object-cover grayscale"
                 />
                 {/* Yin dot (white) */}
                 <div className="absolute top-[65%] left-[35%] w-16 h-16 rounded-full bg-white" />
@@ -317,13 +317,13 @@ const AnimatedSphere = () => {
               <div 
                 className="absolute inset-0"
                 style={{
-                  clipPath: 'path("M200 0 A200 200 0 0 1 200 400 C 50 300, 50 100, 200 0")'
+                  clipPath: 'path("M200 0 A200 200 0 0 1 200 400 C 150 350, 250 250, 200 200 C 150 150, 250 50, 200 0")'
                 }}
               >
                 <img 
                   src="/sideguy.png" 
                   alt="Right half" 
-                  className="w-1/2 h-1/2 object-cover"
+                  className="w-full h-full object-cover"
                 />
                 {/* Yang dot (black) */}
                 <div className="absolute top-[35%] left-[65%] w-16 h-16 rounded-full bg-black" />
