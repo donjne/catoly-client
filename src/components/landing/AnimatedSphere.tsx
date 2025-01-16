@@ -1,61 +1,69 @@
 const AnimatedSphere = () => {
     return (
       <div className="relative w-96 h-96 max-w-full">
-        {/* Base container */}
-        <div className="absolute inset-0 rounded-full overflow-hidden">
-          {/* Original colored image (base layer) */}
-          <img 
-            src="/sideguy.png" 
-            alt="Sphere" 
-            className="w-full h-full object-cover"
-          />
+        <div className="absolute inset-0">
+          {/* SVG definitions for masks */}
+          <svg width="0" height="0">
+            <defs>
+              <clipPath id="yinPath">
+                <path d="M50,0 A50,50 0 0,1 50,100 A25,25 0 0,1 50,50 A25,25 0 0,0 50,0" />
+              </clipPath>
+              <clipPath id="yangPath">
+                <path d="M50,0 A50,50 0 0,0 50,100 A25,25 0 0,0 50,50 A25,25 0 0,1 50,0" />
+              </clipPath>
+            </defs>
+          </svg>
   
-          {/* Black and white version of the same image */}
-          <div className="absolute inset-0" style={{ mixBlendMode: 'saturation' }}>
-            <img 
-              src="/sideguy.png" 
-              alt="Sphere" 
-              className="w-full h-full object-cover grayscale"
-            />
+          {/* Container for the rotating parts */}
+          <div className="relative w-full h-full rounded-full overflow-hidden">
+            {/* Original colored part */}
+            <div 
+              className="absolute inset-0"
+              style={{
+                animation: 'rotateYin 4s linear infinite'
+              }}
+            >
+              <div style={{ clipPath: 'url(#yinPath)' }}>
+                <img 
+                  src="/sideguy.png" 
+                  alt="Colored half"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+  
+            {/* Black and white part */}
+            <div 
+              className="absolute inset-0"
+              style={{
+                animation: 'rotateYang 4s linear infinite'
+              }}
+            >
+              <div style={{ clipPath: 'url(#yangPath)' }}>
+                <img 
+                  src="/sideguy.png" 
+                  alt="B&W half"
+                  className="w-full h-full object-cover grayscale"
+                />
+              </div>
+            </div>
           </div>
-  
-          {/* Rotating mask that reveals/hides the B&W layer */}
-          <div 
-            className="absolute inset-0"
-            style={{ 
-              animation: 'rotateYinYang 8s linear infinite',
-              backgroundImage: `
-                radial-gradient(circle at 50% 25%, black 0, black 18px, transparent 18px),
-                radial-gradient(circle at 50% 75%, white 0, white 18px, transparent 18px),
-                linear-gradient(90deg, transparent 50%, black 50%)
-              `,
-              maskImage: `
-                radial-gradient(circle at 50% 25%, white 0, white 18px, transparent 18px),
-                radial-gradient(circle at 50% 75%, black 0, black 18px, transparent 18px),
-                linear-gradient(90deg, white 50%, transparent 50%)
-              `,
-              WebkitMaskImage: `
-                radial-gradient(circle at 50% 25%, white 0, white 18px, transparent 18px),
-                radial-gradient(circle at 50% 75%, black 0, black 18px, transparent 18px),
-                linear-gradient(90deg, white 50%, transparent 50%)
-              `,
-              maskComposite: 'source-in',
-              WebkitMaskComposite: 'source-in',
-              transform: 'scale(1.01)' // Slight scale to avoid edge artifacts
-            }}
-          />
         </div>
       </div>
     );
   };
   
-  // Add the rotation keyframe
+  // Add the rotation keyframes
   if (typeof document !== 'undefined') {
     const styleSheet = document.createElement('style');
     styleSheet.textContent = `
-      @keyframes rotateYinYang {
-        from { transform: scale(1.01) rotate(0deg); }
-        to { transform: scale(1.01) rotate(360deg); }
+      @keyframes rotateYin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      @keyframes rotateYang {
+        from { transform: rotate(180deg); }
+        to { transform: rotate(540deg); }
       }
     `;
     document.head.appendChild(styleSheet);
