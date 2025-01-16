@@ -87,9 +87,16 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0 transform hover:scale-105 transition-transform duration-200">
-            <span className="text-white text-xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-              Toly AI
-            </span>
+            <div className="flex items-center gap-2">
+              <img 
+                src="/logo.png" 
+                alt="Toly AI Logo" 
+                className="w-8 h-8 object-contain"
+              />
+              <span className="text-white text-xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+                Toly AI
+              </span>
+            </div>
           </div>
 
           {/* Desktop Navigation */}
