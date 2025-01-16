@@ -866,7 +866,7 @@ const AnimatedSphere = () => {
                 }}
               >
                 <img 
-                  src="/sideguy.png" 
+                  src="/sideguy.png"
                   alt="Left half" 
                   className="w-full h-full object-cover"
                 />
@@ -902,7 +902,7 @@ const AnimatedSphere = () => {
             
             {/* Center point pulse */}
             <div className="center-point absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-              <div className="w-2 h-2 bg-blue-400 rounded-full animate-ping" />
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-ping" />
             </div>
           </div>
         </div>
@@ -935,9 +935,9 @@ const AnimatedSphere = () => {
         left: 50%;
         transform-origin: left;
         background: linear-gradient(90deg, 
-          rgba(96, 165, 250, 0) 0%,
-          rgba(96, 165, 250, 0.4) 50%,
-          rgba(96, 165, 250, 0) 100%
+            rgba(75, 85, 99, 0) 0%,
+            rgba(34, 197, 94, 0.4) 50%,
+            rgba(75, 85, 99, 0) 100%
         );
         filter: blur(5px);
         pointer-events: none;
