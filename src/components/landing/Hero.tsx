@@ -106,75 +106,64 @@ const ParticleField = () => {
 };
 
 const AnimatedSphere = () => {
-  return (
-    <div className="relative w-96 h-96 max-w-full">
-      <div className="absolute inset-0 rounded-full overflow-hidden">
-        {/* Rotating lights */}
-        <div className="absolute inset-0 z-10">
-          {/* Yin (B&W) side light */}
-          <div 
-            className="absolute inset-0 bg-white/30 blur-2xl"
-            style={{
-              clipPath: 'polygon(0 0, 50% 0, 50% 100%, 0 100%)',
-              animation: 'yinRotate 8s linear infinite'
-            }}
-          />
-          {/* Yang (Color) side light */}
-          <div 
-            className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 blur-2xl opacity-30"
-            style={{
-              clipPath: 'polygon(50% 0, 100% 0, 100% 100%, 50% 100%)',
-              animation: 'yangRotate 8s linear infinite'
-            }}
-          />
-        </div>
-
-        {/* Main yin-yang container */}
-        <div 
-          className="absolute inset-0 z-20"
-          style={{ animation: 'mainRotate 8s linear infinite' }}
-        >
-          {/* Base image */}
+    return (
+      <div className="relative w-96 h-96 max-w-full">
+        {/* Static base container */}
+        <div className="absolute inset-0 rounded-full overflow-hidden">
+          {/* Static base image */}
           <img 
-            src="/sideguy.png" 
+            src="/sphere-image.jpg" 
             alt="Sphere" 
             className="w-full h-full object-cover"
           />
-
-          {/* Yin (B&W) overlay */}
+  
+          {/* Black and white filter for yin part (left side) */}
           <div 
             className="absolute inset-0"
             style={{
               background: 'linear-gradient(90deg, rgba(0,0,0,0.9), rgba(255,255,255,0.1))',
               mixBlendMode: 'saturation',
-              clipPath: 'polygon(0 0, 50% 0, 50% 100%, 0 100%)'
+              clipPath: 'path("M48,0 A48,48 0 0,1 48,96 A24,24 0 0,1 48,48 A24,24 0 0,0 48,0")',
+              transform: 'scale(1.05)'  // Slight scale to avoid edge artifacts
             }}
           />
-
-          {/* Yin-yang curve */}
+  
+          {/* Rotating gradient overlays */}
           <div 
             className="absolute inset-0"
-            style={{
-              background: `
-                radial-gradient(circle at 50% 25%, #fff 0%, #fff 25%, transparent 26%),
-                radial-gradient(circle at 50% 75%, #000 0%, #000 25%, transparent 26%)
-              `,
-              mask: 'linear-gradient(90deg, #000 49.5%, transparent 50.5%)'
-            }}
-          />
-
-          {/* Dots */}
-          <div className="absolute left-1/2 top-1/4 w-8 h-8 -translate-x-1/2 -translate-y-1/2 bg-black rounded-full">
+            style={{ animation: 'rotateGradients 8s linear infinite' }}
+          >
+            {/* Yin side gradient (purples) */}
+            <div 
+              className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 opacity-40"
+              style={{
+                clipPath: 'path("M48,0 A48,48 0 0,1 48,96 A24,24 0 0,1 48,48 A24,24 0 0,0 48,0")',
+                mixBlendMode: 'overlay'
+              }}
+            />
+            
+            {/* Yang side gradient (blues) */}
+            <div 
+              className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 opacity-40"
+              style={{
+                clipPath: 'path("M48,96 A48,48 0 0,1 48,0 A24,24 0 0,0 48,48 A24,24 0 0,1 48,96")',
+                mixBlendMode: 'overlay'
+              }}
+            />
+          </div>
+  
+          {/* Static dots */}
+          <div className="absolute left-1/2 top-1/4 w-8 h-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-black">
             <div className="absolute inset-1 rounded-full bg-white" />
           </div>
-          <div className="absolute left-1/2 top-3/4 w-8 h-8 -translate-x-1/2 -translate-y-1/2 bg-white rounded-full">
+          <div className="absolute left-1/2 top-3/4 w-8 h-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white">
             <div className="absolute inset-1 rounded-full bg-black" />
           </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  };
+  
 
 const Hero = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -239,23 +228,33 @@ const Hero = () => {
 };
 
 // Animation keyframes
-if (typeof document !== 'undefined') {
-  const styleSheet = document.createElement('style');
-  styleSheet.textContent = `
-    @keyframes mainRotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    @keyframes yinRotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(-360deg); }
-    }
-    @keyframes yangRotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-  `;
-  document.head.appendChild(styleSheet);
-}
+  if (typeof document !== 'undefined') {
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = `
+      @keyframes rotateGradients {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+    `;
+    document.head.appendChild(styleSheet);
+  }
+// if (typeof document !== 'undefined') {
+//   const styleSheet = document.createElement('style');
+//   styleSheet.textContent = `
+//     @keyframes mainRotate {
+//       from { transform: rotate(0deg); }
+//       to { transform: rotate(360deg); }
+//     }
+//     @keyframes yinRotate {
+//       from { transform: rotate(0deg); }
+//       to { transform: rotate(-360deg); }
+//     }
+//     @keyframes yangRotate {
+//       from { transform: rotate(0deg); }
+//       to { transform: rotate(360deg); }
+//     }
+//   `;
+//   document.head.appendChild(styleSheet);
+// }
 
 export default Hero;
