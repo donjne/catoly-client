@@ -398,19 +398,87 @@
   
 //   export default AnimatedSphere;
 
+// const AnimatedSphere = () => {
+//     return (
+//       <div className="relative w-96 h-96 max-w-full">
+//         <div className="absolute inset-0 rounded-full overflow-hidden">
+//           <div 
+//             className="relative w-full h-full" 
+//             style={{ animation: 'rotateYinYang 4s linear infinite' }}
+//           >
+//             {/* Left side (B&W) */}
+//             <div 
+//               className="absolute inset-0"
+//               style={{
+//                 clipPath: 'path("M200 0 C100 100, 100 150, 200 200 C300 250, 300 300, 200 400")'
+//               }}
+//             >
+//               <img 
+//                 src="/sideguy.png" 
+//                 alt="Left half" 
+//                 className="w-full h-full object-cover grayscale"
+//               />
+//               {/* White dot */}
+//               <div className="absolute top-[65%] left-[35%] w-16 h-16 rounded-full bg-white" />
+//             </div>
+  
+//             {/* Right side (Color) */}
+//             <div 
+//               className="absolute inset-0"
+//               style={{
+//                 clipPath: 'path("M200 0 C300 100, 300 150, 200 200 C100 250, 100 300, 200 400")'
+//               }}
+//             >
+//               <img 
+//                 src="/sideguy.png" 
+//                 alt="Right half" 
+//                 className="w-full h-full object-cover"
+//               />
+//               {/* Black dot */}
+//               <div className="absolute top-[35%] left-[65%] w-16 h-16 rounded-full bg-black" />
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     );
+//   };
+  
+//   // Add the rotation animation
+//   if (typeof document !== 'undefined') {
+//     const styleSheet = document.createElement('style');
+//     styleSheet.textContent = `
+//       @keyframes rotateYinYang {
+//         from { transform: rotate(0deg); }
+//         to { transform: rotate(360deg); }
+//       }
+//     `;
+//     document.head.appendChild(styleSheet);
+//   }
+  
+//   export default AnimatedSphere;
+
 const AnimatedSphere = () => {
     return (
-      <div className="relative w-96 h-96 max-w-full">
+      <div className="relative w-64 h-64 max-w-full">
+        {/* Particle effects */}
+        <div className="particles absolute inset-0">
+          {[...Array(6)].map((_, i) => (
+            <div
+              key={i}
+              className={`particle-${i} absolute w-2 h-2 bg-yellow-400 rounded-full opacity-0`}
+            />
+          ))}
+        </div>
+  
         <div className="absolute inset-0 rounded-full overflow-hidden">
           <div 
-            className="relative w-full h-full" 
-            style={{ animation: 'rotateYinYang 4s linear infinite' }}
+            className="sphere relative w-full h-full" 
           >
             {/* Left side (B&W) */}
             <div 
               className="absolute inset-0"
               style={{
-                clipPath: 'path("M200 0 C100 100, 100 150, 200 200 C300 250, 300 300, 200 400")'
+                clipPath: 'polygon(0 0, 50% 0, 50% 100%, 0 100%)'
               }}
             >
               <img 
@@ -419,14 +487,14 @@ const AnimatedSphere = () => {
                 className="w-full h-full object-cover grayscale"
               />
               {/* White dot */}
-              <div className="absolute top-[65%] left-[35%] w-16 h-16 rounded-full bg-white" />
+              <div className="absolute top-[65%] left-[35%] w-8 h-8 rounded-full bg-white" />
             </div>
   
             {/* Right side (Color) */}
             <div 
               className="absolute inset-0"
               style={{
-                clipPath: 'path("M200 0 C300 100, 300 150, 200 200 C100 250, 100 300, 200 400")'
+                clipPath: 'polygon(50% 0, 100% 0, 100% 100%, 50% 100%)'
               }}
             >
               <img 
@@ -435,7 +503,7 @@ const AnimatedSphere = () => {
                 className="w-full h-full object-cover"
               />
               {/* Black dot */}
-              <div className="absolute top-[35%] left-[65%] w-16 h-16 rounded-full bg-black" />
+              <div className="absolute top-[35%] left-[65%] w-8 h-8 rounded-full bg-black" />
             </div>
           </div>
         </div>
@@ -443,13 +511,75 @@ const AnimatedSphere = () => {
     );
   };
   
-  // Add the rotation animation
+  // Add animations
   if (typeof document !== 'undefined') {
     const styleSheet = document.createElement('style');
     styleSheet.textContent = `
-      @keyframes rotateYinYang {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
+      .sphere {
+        animation: rotateAndSpeed 8s ease-in-out infinite;
+        transform-origin: center;
+      }
+  
+      @keyframes rotateAndSpeed {
+        0% { transform: rotate(0deg); }
+        50% { transform: rotate(180deg); }
+        75% { transform: rotate(540deg); }
+        100% { transform: rotate(720deg); }
+      }
+  
+      /* Particle animations */
+      .particles div {
+        animation: particleShoot 2s ease-out infinite;
+      }
+  
+      ${[...Array(6)].map((_, i) => `
+        .particle-${i} {
+          left: 50%;
+          top: 50%;
+          animation-delay: ${i * 0.3}s !important;
+          transform-origin: center;
+        }
+      `).join('')}
+  
+      @keyframes particleShoot {
+        0% {
+          transform: translate(0, 0) scale(0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+          transform: translate(
+            ${(Math.random() * 200) - 100}px,
+            ${(Math.random() * 200) - 100}px
+          ) scale(1);
+        }
+      }
+  
+      /* Add a pulse effect */
+      .sphere::before {
+        content: '';
+        position: absolute;
+        inset: -4px;
+        border: 4px solid rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        animation: pulse 2s ease-out infinite;
+      }
+  
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          opacity: 0.5;
+        }
+        100% {
+          transform: scale(1.5);
+          opacity: 0;
+        }
       }
     `;
     document.head.appendChild(styleSheet);
