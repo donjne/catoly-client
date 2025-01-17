@@ -948,8 +948,8 @@ const AnimatedSphere = () => {
         position: absolute;
         inset: -2px;
         background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), 
-          rgba(96, 165, 250, 0.3) 0%,
-          rgba(96, 165, 250, 0) 60%
+          rgba(96, 165, 220, 0.3) 0%,
+          rgba(96, 165, 220, 0) 60%
         );
         animation: moveGlow 4s linear infinite;
       }
