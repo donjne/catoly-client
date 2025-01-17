@@ -4,6 +4,7 @@ import Features from "./Features";
 import Hero from "./Hero";
 import Navbar from "./Navbar";
 import TestimonialsSection from "./Testimonials";
+import FAQSection from "./FAQSection";
 
 export default function Full() {
   return (
@@ -17,6 +18,7 @@ export default function Full() {
         <Features />
         <DemoSection />
         <TestimonialsSection />
+        <FAQSection />
       </div>
     </div>
   );

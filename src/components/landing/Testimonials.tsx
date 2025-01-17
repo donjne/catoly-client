@@ -164,17 +164,13 @@ const TestimonialCard = ({ testimonial, isActive }: { testimonial: Testimonial, 
       }`}
     >
       <div className="relative p-8 rounded-2xl border border-white/10 bg-black/50 backdrop-blur-xl overflow-hidden transition-transform duration-500 group-hover:scale-105">
-        {/* Animated gradient background */}
         <div className="absolute inset-0 bg-gradient-to-r from-gray-500/10 via-green-500/10 to-gray-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         
-        {/* Quote icon */}
         <div className="absolute -top-4 -right-4 text-green-500/20 transform rotate-12 group-hover:scale-110 transition-transform duration-500">
           <Quote size={80} />
         </div>
 
-        {/* Content */}
         <div className="relative z-10">
-          {/* Avatar and info */}
           <div className="flex items-start space-x-4 mb-6">
             <div className="relative">
               <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-green-500/30 transform group-hover:scale-110 transition-transform duration-500">
@@ -202,7 +198,6 @@ const TestimonialCard = ({ testimonial, isActive }: { testimonial: Testimonial, 
             </div>
           </div>
 
-          {/* Rating */}
           <div className="flex space-x-1 mb-4">
             {Array.from({ length: testimonial.rating }).map((_, i) => (
               <Star
@@ -214,7 +209,6 @@ const TestimonialCard = ({ testimonial, isActive }: { testimonial: Testimonial, 
             ))}
           </div>
 
-          {/* Testimonial content */}
           <p className="text-gray-300 leading-relaxed group-hover:text-white transition-colors duration-300">
             "{testimonial.content}"
           </p>
@@ -226,6 +220,8 @@ const TestimonialCard = ({ testimonial, isActive }: { testimonial: Testimonial, 
 
 const TestimonialsSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const slideInterval = useRef<NodeJS.Timeout | null>(null);
 
   const handleNext = () => {
     setActiveIndex((prev) => (prev + 1) % testimonials.length);
@@ -235,16 +231,43 @@ const TestimonialsSection = () => {
     setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
+  useEffect(() => {
+    // Start the auto-sliding interval
+    const startSlideTimer = () => {
+      slideInterval.current = setInterval(() => {
+        if (!isPaused) {
+          handleNext();
+        }
+      }, 5000); // Change slide every 5 seconds
+    };
+
+    startSlideTimer();
+
+    // Cleanup function
+    return () => {
+      if (slideInterval.current) {
+        clearInterval(slideInterval.current);
+      }
+    };
+  }, [isPaused]);
+
+  // Pause auto-sliding on hover
+  const handleMouseEnter = () => {
+    setIsPaused(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsPaused(false);
+  };
+
   return (
     <section className="relative bg-black min-h-screen py-24 overflow-hidden">
-      {/* Background effects */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-b from-black via-purple-900/10 to-black" />
         <ParticleBackground />
       </div>
 
       <div className="relative z-10 container mx-auto px-4">
-        {/* Section header */}
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 relative inline-block">
             <span className="bg-gradient-to-r from-gray-400 via-green-500 to-gray-500 bg-clip-text text-transparent">
@@ -257,10 +280,12 @@ const TestimonialsSection = () => {
           </p>
         </div>
 
-        {/* Testimonials carousel */}
         <div className="max-w-6xl mx-auto">
-          <div className="relative px-12">
-            {/* Navigation buttons */}
+          <div 
+            className="relative px-12"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
             <button
               onClick={handlePrev}
               className="absolute left-0 top-1/2 -translate-y-1/2 p-2 text-gray-400 hover:text-white transition-colors duration-200 hover:bg-white/10 rounded-full"
@@ -274,7 +299,6 @@ const TestimonialsSection = () => {
               <ArrowRight size={24} />
             </button>
 
-            {/* Testimonials */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {testimonials.map((testimonial, index) => {
                 const distance = Math.abs(index - activeIndex);
@@ -290,7 +314,6 @@ const TestimonialsSection = () => {
             </div>
           </div>
 
-          {/* Navigation dots */}
           <div className="flex justify-center space-x-2 mt-8">
             {testimonials.map((_, index) => (
               <button
