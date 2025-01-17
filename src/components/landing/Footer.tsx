@@ -52,7 +52,7 @@ const Footer = () => {
           <div className="space-y-6">
             <div className="flex items-center gap-2">
               <img 
-                src="/api/placeholder/32/32"
+                src="/logo.png"
                 alt="Toly AI Logo" 
                 className="w-8 h-8 object-contain rounded-full"
               />

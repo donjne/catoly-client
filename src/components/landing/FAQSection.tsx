@@ -172,9 +172,9 @@ const FAQSection = () => {
           <p className="text-gray-400 mb-4">
             Still have questions? We're here to help!
           </p>
-          <button className="px-8 py-4 bg-gradient-to-r from-gray-500 to-green-600 rounded-lg text-white font-medium transform hover:scale-105 transition-all duration-200 hover:shadow-lg hover:shadow-green-500/30">
+          <a href='/contact' className="px-8 py-4 bg-gradient-to-r from-gray-500 to-green-600 rounded-lg text-white font-medium transform hover:scale-105 transition-all duration-200 hover:shadow-lg hover:shadow-green-500/30">
             Contact Support
-          </button>
+          </a>
         </div>
       </div>
     </section>
