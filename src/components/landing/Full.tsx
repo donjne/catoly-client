@@ -5,6 +5,7 @@ import Hero from "./Hero";
 import Navbar from "./Navbar";
 import TestimonialsSection from "./Testimonials";
 import FAQSection from "./FAQSection";
+import Footer from "./Footer";
 
 export default function Full() {
   return (
@@ -19,6 +20,7 @@ export default function Full() {
         <DemoSection />
         <TestimonialsSection />
         <FAQSection />
+        <Footer />
       </div>
     </div>
   );
