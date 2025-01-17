@@ -106,6 +106,69 @@ const ParticleField = () => {
   );
 };
 
+const Hero = () => {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <div className="relative min-h-screen overflow-hidden bg-black">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10" />
+      <div className="absolute inset-0 backdrop-blur-3xl">
+        <ParticleField />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 container mx-auto px-4 pt-40 h-screen flex flex-col items-center justify-center">
+        <div className={`space-y-6 text-center transform transition-all duration-700 ${
+          scrollY > 100 ? 'translate-y-10 opacity-0' : 'translate-y-0 opacity-100'
+        }`}>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold">
+            <span className="bg-gradient-to-r from-gray-400 via-green-500 to-gray-500 bg-clip-text text-transparent">
+              The Next Generation
+            </span>
+            <br />
+            <span className="text-white">Toly AI</span>
+          </h1>
+
+          <p className="text-gray-400 text-xl md:text-2xl max-w-2xl mx-auto">
+            Toly is here to help with insights on transactions, tokens, wallets and all activities on the Solana Blockchain
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+            <button className="px-8 py-4 bg-gradient-to-r from-gray-500 to-green-600 rounded-lg text-white font-medium transform hover:scale-105 transition-all duration-200 hover:shadow-lg hover:shadow-green-500/30">
+              Get Started
+            </button>
+            <button className="px-8 py-4 bg-white/10 backdrop-blur-lg rounded-lg text-white font-medium transform hover:scale-105 transition-all duration-200 hover:shadow-lg hover:shadow-white/20 border border-white/20">
+              Learn More
+            </button>
+          </div>
+        </div>
+
+        <div className={`mt-12 transform transition-all duration-700 ${
+          scrollY > 100 ? 'translate-y-10 opacity-0' : 'translate-y-0 opacity-100'
+        }`}>
+          <AnimatedSphere />
+        </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-white/50">
+        <span className="text-sm">Scroll to explore</span>
+        <div className="w-1 h-12 mt-2 bg-white/20 rounded-full">
+          <div className="w-full h-1/2 bg-gradient-to-b from-gray-500 to-green-600 rounded-full animate-bounce" />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
 // const AnimatedSphere = () => {
 //     return (
 //       <div className="relative w-96 h-96 max-w-full">
@@ -235,69 +298,6 @@ const ParticleField = () => {
 //       </div>
 //     );
 //   };
-  
-
-const Hero = () => {
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  return (
-    <div className="relative min-h-screen overflow-hidden bg-black">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10" />
-      <div className="absolute inset-0 backdrop-blur-3xl">
-        <ParticleField />
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 pt-40 h-screen flex flex-col items-center justify-center">
-        <div className={`space-y-6 text-center transform transition-all duration-700 ${
-          scrollY > 100 ? 'translate-y-10 opacity-0' : 'translate-y-0 opacity-100'
-        }`}>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold">
-            <span className="bg-gradient-to-r from-gray-400 via-green-500 to-gray-500 bg-clip-text text-transparent">
-              The Next Generation
-            </span>
-            <br />
-            <span className="text-white">Toly AI</span>
-          </h1>
-
-          <p className="text-gray-400 text-xl md:text-2xl max-w-2xl mx-auto">
-            Toly is here to help with insights on transactions, tokens, wallets and all activities on the Solana Blockchain
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-            <button className="px-8 py-4 bg-gradient-to-r from-gray-500 to-green-600 rounded-lg text-white font-medium transform hover:scale-105 transition-all duration-200 hover:shadow-lg hover:shadow-green-500/30">
-              Get Started
-            </button>
-            <button className="px-8 py-4 bg-white/10 backdrop-blur-lg rounded-lg text-white font-medium transform hover:scale-105 transition-all duration-200 hover:shadow-lg hover:shadow-white/20 border border-white/20">
-              Learn More
-            </button>
-          </div>
-        </div>
-
-        <div className={`mt-12 transform transition-all duration-700 ${
-          scrollY > 100 ? 'translate-y-10 opacity-0' : 'translate-y-0 opacity-100'
-        }`}>
-          <AnimatedSphere />
-        </div>
-      </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-white/50">
-        <span className="text-sm">Scroll to explore</span>
-        <div className="w-1 h-12 mt-2 bg-white/20 rounded-full">
-          <div className="w-full h-1/2 bg-gradient-to-b from-gray-500 to-green-600 rounded-full animate-bounce" />
-        </div>
-      </div>
-    </div>
-  );
-};
 
 // Animation keyframes
 //   if (typeof document !== 'undefined') {

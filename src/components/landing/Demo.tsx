@@ -200,10 +200,10 @@ const DemoSection = () => {
         {/* Section header */}
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 relative inline-block">
-            <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-gray-400 via-green-500 to-gray-500 bg-clip-text text-transparent">
               Try It Yourself
             </span>
-            <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 blur-xl opacity-20" />
+            <div className="absolute -inset-1 bg-gradient-to-r from-gray-500 via-green-500 to-gray-500 blur-xl opacity-20" />
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto mt-6">
             Experience the power of AI-assisted trading and analytics
@@ -221,7 +221,7 @@ const DemoSection = () => {
                 <div className="w-3 h-3 rounded-full bg-green-500" />
               </div>
               <div className="flex-1 text-center">
-                <span className="text-white/50 text-sm">demo.toly.ai</span>
+                <span className="text-white/50 text-sm">toly.ai</span>
               </div>
             </div>
 
